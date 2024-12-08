@@ -1,0 +1,73 @@
+{
+	"name": "technoir-vscode",
+	"displayName": "TechNoir",
+	"description": "A techNoir, neon syntax theme",
+	"version": "0.0.1",
+	"author": "Adrix Corp",
+	"publisher": "AdrixCorp",
+	"icon": "icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/adrixcorp/technoir-vscode"
+	},
+	"engines": {
+		"vscode": "^1.33.0"
+	},
+	"extensionKind": [
+		"ui"
+	],
+	"keywords": [
+		"technoir",
+		"future",
+		"outrun",
+		"cyberpunk"
+	],
+	"categories": [
+		"Themes"
+	],
+	"activationEvents": [
+		"onCommand:technoir.enableNeon",
+		"onCommand:technoir.disableNeon"
+	],
+	"main": "./src/extension.js",
+	"contributes": {
+		"themes": [
+			{
+				"label": "TechNoir",
+				"uiTheme": "vs-dark",
+				"path": "./themes/technoir-color-theme.json"
+			}
+		],
+		"commands": [
+			{
+				"command": "technoir.enableNeon",
+				"title": "TechNoir: Enable Neon Syntax"
+			},
+			{
+				"command": "technoir.disableNeon",
+				"title": "TechNoir: Disable Neon Syntax"
+			}
+		],
+		"configuration": {
+			"title": "TechNoir",
+			"properties": {
+				"technoir.brightness": {
+					"type": "number",
+					"default": 1,
+					"description": "Set the brightness value for the glow effect. 0.0 is fully transparent and 1.0 is fully bright"
+				},
+				"technoir.disableGlow": {
+					"type": "boolean",
+					"default": false,
+					"description": "Disable the glow effect, but show TechNoir editor chrome updates"
+				}
+			}
+		}
+	},
+	"__metadata": {
+		"isApplicationScoped": false,
+		"installedTimestamp": 1733421104763,
+		"pinned": true,
+		"source": "vsix"
+	}
+}
