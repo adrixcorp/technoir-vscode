@@ -1,6 +1,6 @@
 # Technoir Theme
 
-Based on [SynthWave '84 Min Darker Theme](https://github.com/FernaandoJr/synthwave-remix-min-darker) and [SynthWave '84](https://github.com/robb0wen/synthwave-vscode)
+Based on [SynthWave '84 Min Darker Theme](https://github.com/FernaandoJr/synthwave-remix-min-darker) and [SynthWave '84](https://github.com/robb0wen/synthwave-vscode) with additional inspiration from [steam-pirate-ui for Atom Editor](https://github.com/v3ss0n/steam-pirate-ui)
 
 With syntax highlighting inspired by [Neon Syntax for Atom Editor](https://github.com/anomaly256/neon-syntax) which itself is based on [Farzher Neon Sublime Text 2/3 theme](https://github.com/farzher/Sublime-Text-Themes)
 
