@@ -15,5 +15,5 @@ We recommend using this theme with a nice background with an extension like Kats
 
 ## Theme and Syntax Preview
 
-![Preview](/img/preview.jpg)
+![Preview](https://github.com/adrixcorp/technoir-vscode/blob/master/img/preview.jpg)
 
