@@ -65,21 +65,21 @@
       return;
     }
 
-    const initialThemeStyles = tokensEl.innerText;
+    // Add the theme styles if they don't already exist in the DOM
+    if (!document.querySelector('#technoir-theme-styles')) {
+      const initialThemeStyles = tokensEl.innerText;
 
-    let updatedThemeStyles = !disableGlow
-      ? replaceTokens(initialThemeStyles, tokenReplacements)
-      : initialThemeStyles;
+      let updatedThemeStyles = !disableGlow
+        ? replaceTokens(initialThemeStyles, tokenReplacements)
+        : initialThemeStyles;
 
-    /* append the remaining styles */
-    updatedThemeStyles = `${updatedThemeStyles}`;
+      const newStyleTag = document.createElement('style');
+      newStyleTag.setAttribute("id", "technoir-theme-styles");
+      newStyleTag.innerText = updatedThemeStyles.replace(/(\r\n|\n|\r)/gm, '');
+      document.body.appendChild(newStyleTag);
 
-    const newStyleTag = document.createElement('style');
-    newStyleTag.setAttribute("id", "technoir-theme-styles");
-    newStyleTag.innerText = updatedThemeStyles.replace(/(\r\n|\n|\r)/gm, '');
-    document.body.appendChild(newStyleTag);
-
-    console.log('Technoir: NEON DREAMS initialised!');
+      console.log('Technoir: NEON DREAMS initialised!');
+    }
 
     if (obs) {
       obs.disconnect();
@@ -87,21 +87,23 @@
     }
   };
 
-  const watchForBootstrap = function (mutationsList, observer) {
-    for (let mutation of mutationsList) {
-      if (mutation.type === 'attributes') {
+  /**
+   * @summary A MutationObserver callback that attempts to bootstrap the theme and assigns a retry attempt if it fails
+   */
+  const watchForBootstrap = function(mutationsList, observer) {
+    for(let mutation of mutationsList) {
+      if (mutation.type === 'attributes' || mutation.type === 'childList') {
+        // does the style div exist yet?
         const tokensEl = document.querySelector('.vscode-tokens-styles');
         if (readyForReplacement(tokensEl, tokenReplacements)) {
+          // If everything we need is ready, then initialise
           initNeonDreams(false, observer);
         } else {
-          observer.disconnect();
-          observer.observe(tokensEl, { childList: true });
-        }
-      }
-      if (mutation.type === 'childList') {
-        const tokensEl = document.querySelector('.vscode-tokens-styles');
-        if (readyForReplacement(tokensEl, tokenReplacements)) {
-          initNeonDreams(false, observer);
+          if (tokensEl) {
+            // sometimes VS code takes a while to init the styles content, so if there stop this observer and add an observer for that
+            observer.disconnect();
+            observer.observe(tokensEl, { childList: true });
+          }
         }
       }
     }
@@ -111,7 +113,12 @@
   // Start bootstrapping!
   //=============================
   initNeonDreams(false);
+  // Grab body node
   const bodyNode = document.querySelector('body');
+  // Use a mutation observer to check when we can bootstrap the theme
   const observer = new MutationObserver(watchForBootstrap);
-  observer.observe(bodyNode, { attributes: true });
+  /* watch for both attribute and childList changes because, depending on 
+  the VS code version, the mutations might happen on the body, or they might 
+  happen on a nested div */
+  observer.observe(bodyNode, { attributes: true, childList: true });
 })();
