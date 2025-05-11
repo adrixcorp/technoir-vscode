@@ -11,7 +11,7 @@ If you are a Windows user, you may need to run VS Code with administrator privil
 To activate the glow, Set your active colour theme to Technoir, open your command palette with `Ctrl + Shift + P` or `Shift + ⌘ + P` and choose "__Enable Neon Syntax__". It will prompt you to restart, and when you do the lights should be on.
 
 ## Use with a background
-We recommend using this theme with a nice background with an extension like Katsute.code-background. Background in preview image included in img folder.
+We recommend using this theme with a nice background with an extension like Katsute.code-background. Background in preview image included in img folder (on git). We set a background opacity of 0.1 and 5px blur.
 
 ## Theme and Syntax Preview
 
