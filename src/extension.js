@@ -24,7 +24,7 @@ function activate(context) {
 
 		const appDir = path.dirname(vscode.env.appRoot);
 		const base = path.join(appDir,'app','out','vs','code');
-		const electronBase = isVSCodeBelowVersion("1.70.0") ? "electron-browser" : "electron-sandbox";
+		const electronBase = "electron-browser";
 		const workBenchFilename = vscode.version == "1.94.0" ? "workbench.esm.html" : "workbench.html";
 
 		const htmlFile = path.join(base, electronBase, "workbench", workBenchFilename);
@@ -96,7 +96,7 @@ function deactivate() {
 function uninstall() {
 	const appDir = path.dirname(vscode.env.appRoot);
 	const base = path.join(appDir, 'app', 'out', 'vs', 'code');
-	const electronBase = isVSCodeBelowVersion("1.70.0") ? "electron-browser" : "electron-sandbox";
+	const electronBase = "electron-browser";
 	const workBenchFilename = vscode.version == "1.94.0" ? "workbench.esm.html" : "workbench.html";
 
 	const htmlFile = path.join(base, electronBase, "workbench", workBenchFilename);
